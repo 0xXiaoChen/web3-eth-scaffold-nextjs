@@ -5,7 +5,7 @@ import { ABI } from "../../config/constant";
 
 const MintPage = (props) => {
   return (
-    <div id="mainContainer">
+    <div className="flex flex-col justify-center items-center">
       <h1>The Mint Page</h1>
       <WriteButton
         abi={props.abi}

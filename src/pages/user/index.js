@@ -14,7 +14,7 @@ const UserContainer = () => {
     }
   }, []);
   return (
-    <div id="mainContainer">
+    <div className="flex flex-col justify-center items-center">
       <h1>The User Page</h1>
     </div>
   );

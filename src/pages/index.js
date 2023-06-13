@@ -6,7 +6,7 @@ import { ethers } from "ethers";
 
 function HomePage(props) {
   return (
-    <div id="mainContainer">
+    <div className="flex flex-col justify-center items-center">
       <h1>The Home Page</h1>
       <h2>{`The static props value from contract: ${props.name}`}</h2>
     </div>
