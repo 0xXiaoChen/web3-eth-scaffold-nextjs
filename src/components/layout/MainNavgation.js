@@ -1,14 +1,14 @@
-import React from "react";
-import Link from "next/link";
-import SignInButton from "../button/SignInButton";
-import { useRouter } from "next/router";
-import { ConnectButton } from "@rainbow-me/rainbowkit";
+import React from "react"
+import Link from "next/link"
+import SignInButton from "../button/SignInButton"
+import { useRouter } from "next/router"
+import { ConnectButton } from "@rainbow-me/rainbowkit"
 
 const MainNavgation = () => {
-  const router = useRouter();
+  const router = useRouter()
   const handleUserClick = () => {
-    router.push("/user");
-  };
+    router.push("/user")
+  }
   return (
     <nav className="flex flex-row items-center justify-between bg-white shadow-md">
       <ul className="flex flex-row items-start justify-center gap-10 p-4">
@@ -28,7 +28,7 @@ const MainNavgation = () => {
         <ConnectButton />
       </div>
     </nav>
-  );
-};
+  )
+}
 
-export default MainNavgation;
+export default MainNavgation

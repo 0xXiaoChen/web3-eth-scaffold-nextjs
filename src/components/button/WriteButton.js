@@ -1,86 +1,86 @@
-import PropTypes from "prop-types";
-import React, { useEffect } from "react";
+import PropTypes from "prop-types"
+import React, { useEffect } from "react"
 import {
   usePrepareContractWrite,
   useContractWrite,
-  useWaitForTransaction,
-} from "wagmi";
+  useWaitForTransaction
+} from "wagmi"
 import {
   DEFAULT_CONTRACT_ADDRESS,
-  GAS_LIMIT_MULTIPLIER,
-} from "../../config/constant";
-import { ethers } from "ethers";
-import { CircularProgress } from "@mui/material";
-import { useSnackbar } from "notistack";
+  GAS_LIMIT_MULTIPLIER
+} from "../../config/constant"
+import { ethers } from "ethers"
+import { CircularProgress } from "@mui/material"
+import { useSnackbar } from "notistack"
 
 const WriteButton = ({ onClick, children, abi, functionName, value, args }) => {
-  const { enqueueSnackbar } = useSnackbar();
+  const { enqueueSnackbar } = useSnackbar()
   const {
     config,
     isError: prepareIsError,
-    error: prepareError,
+    error: prepareError
   } = usePrepareContractWrite({
     address: DEFAULT_CONTRACT_ADDRESS,
     abi,
     functionName,
     overrides: {
-      value: ethers.utils.parseEther(value),
+      value: ethers.utils.parseEther(value)
     },
-    args,
-  });
+    args
+  })
 
   const {
     data,
     error: writeError,
     isError: writeIsError,
     isLoading: writeIsLoading,
-    write,
+    write
   } = useContractWrite({
     ...config,
     request: {
       ...config.request,
-      gasLimit: Math.ceil(config?.request?.gasLimit * GAS_LIMIT_MULTIPLIER),
-    },
-  });
+      gasLimit: Math.ceil(config?.request?.gasLimit * GAS_LIMIT_MULTIPLIER)
+    }
+  })
 
   const {
     data: txnRes,
     error: txnError,
     isError: txnIsError,
     isLoading: txnIsLoading,
-    isSuccess: txnIsSuccess,
+    isSuccess: txnIsSuccess
   } = useWaitForTransaction({
-    hash: data?.hash,
-  });
+    hash: data?.hash
+  })
 
   useEffect(() => {
     if (txnIsSuccess) {
-      console.log("Transaction success", txnRes);
+      console.log("Transaction success", txnRes)
     }
-  }, [txnIsSuccess]);
+  }, [txnIsSuccess])
 
   useEffect(() => {
     if (txnIsError) {
-      enqueueSnackbar(txnError.message, { variant: "error" });
+      enqueueSnackbar(txnError.message, { variant: "error" })
     }
-  }, [txnIsError]);
+  }, [txnIsError])
 
   useEffect(() => {
     if (writeIsError) {
-      enqueueSnackbar(writeError.message, { variant: "error" });
+      enqueueSnackbar(writeError.message, { variant: "error" })
     }
-  }, [writeIsError]);
+  }, [writeIsError])
 
   useEffect(() => {
     if (prepareIsError) {
-      enqueueSnackbar(prepareError.message, { variant: "error" });
+      enqueueSnackbar(prepareError.message, { variant: "error" })
     }
-  }, [prepareIsError]);
+  }, [prepareIsError])
 
   const handleClick = () => {
-    write?.();
-    onClick?.();
-  };
+    write?.()
+    onClick?.()
+  }
   return (
     <>
       <button
@@ -97,8 +97,8 @@ const WriteButton = ({ onClick, children, abi, functionName, value, args }) => {
         </div>
       )}
     </>
-  );
-};
+  )
+}
 
 WriteButton.propTypes = {
   onClick: PropTypes.func,
@@ -106,7 +106,7 @@ WriteButton.propTypes = {
   abi: PropTypes.any.isRequired,
   functionName: PropTypes.string.isRequired,
   value: PropTypes.string.isRequired,
-  args: PropTypes.array.isRequired,
-};
+  args: PropTypes.array.isRequired
+}
 
-export default WriteButton;
+export default WriteButton

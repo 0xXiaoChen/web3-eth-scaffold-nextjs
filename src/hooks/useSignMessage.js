@@ -1,19 +1,19 @@
-import { useEffect } from "react";
-import { useSignMessage } from "wagmi";
+import { useEffect } from "react"
+import { useSignMessage } from "wagmi"
 
 export const useCustomSignMessage = (message, signClick, isCorrectChain) => {
   const { data, isError, isSuccess, signMessage } = useSignMessage({
-    message,
-  });
+    message
+  })
   useEffect(() => {
     if (signClick && message && isCorrectChain) {
-      console.log("signing message ", message);
-      signMessage();
+      console.log("signing message ", message)
+      signMessage()
     }
-  }, [signClick, message, isCorrectChain, signMessage]);
+  }, [signClick, message, isCorrectChain, signMessage])
   return {
     data,
     isError,
-    isSuccess,
-  };
-};
+    isSuccess
+  }
+}

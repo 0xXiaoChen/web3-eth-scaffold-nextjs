@@ -1,34 +1,34 @@
-import React from "react";
-import "../../styles/globals.css";
-import "@rainbow-me/rainbowkit/styles.css";
-import { getDefaultWallets, RainbowKitProvider } from "@rainbow-me/rainbowkit";
-import { configureChains, createClient, WagmiConfig } from "wagmi";
-import { mainnet, polygon, optimism, arbitrum, goerli } from "wagmi/chains";
-import { infuraProvider } from "wagmi/providers/infura";
-import { publicProvider } from "wagmi/providers/public";
-import { SnackbarProvider } from "notistack";
-import NextNProgress from "nextjs-progressbar";
-import Layout from "../components/layout/Layout";
-import PropTypes from "prop-types";
+import React from "react"
+import "../../styles/globals.css"
+import "@rainbow-me/rainbowkit/styles.css"
+import { getDefaultWallets, RainbowKitProvider } from "@rainbow-me/rainbowkit"
+import { configureChains, createClient, WagmiConfig } from "wagmi"
+import { mainnet, polygon, optimism, arbitrum, goerli } from "wagmi/chains"
+import { infuraProvider } from "wagmi/providers/infura"
+import { publicProvider } from "wagmi/providers/public"
+import { SnackbarProvider } from "notistack"
+import NextNProgress from "nextjs-progressbar"
+import Layout from "../components/layout/Layout"
+import PropTypes from "prop-types"
 
 const { chains, provider } = configureChains(
   [mainnet, polygon, optimism, arbitrum, goerli],
   [
     infuraProvider({ apiKey: process.env.NEXT_PUBLIC_INFURA_API }),
-    publicProvider(),
+    publicProvider()
   ]
-);
+)
 
 const { connectors } = getDefaultWallets({
   appName: "My RainbowKit App",
-  chains,
-});
+  chains
+})
 
 const wagmiClient = createClient({
   autoConnect: true,
   connectors,
-  provider,
-});
+  provider
+})
 
 function MyApp({ Component, pageProps }) {
   return (
@@ -37,7 +37,7 @@ function MyApp({ Component, pageProps }) {
       autoHideDuration={3000}
       anchorOrigin={{
         vertical: "bottom",
-        horizontal: "right",
+        horizontal: "right"
       }}
     >
       <WagmiConfig client={wagmiClient}>
@@ -49,12 +49,12 @@ function MyApp({ Component, pageProps }) {
         </RainbowKitProvider>
       </WagmiConfig>
     </SnackbarProvider>
-  );
+  )
 }
 
 MyApp.propTypes = {
   Component: PropTypes.any,
-  pageProps: PropTypes.any,
-};
+  pageProps: PropTypes.any
+}
 
-export default MyApp;
+export default MyApp

@@ -1,7 +1,7 @@
-import PropTypes from "prop-types";
-import React from "react";
-import WriteButton from "../../components/button/WriteButton";
-import { ABI } from "../../config/constant";
+import PropTypes from "prop-types"
+import React from "react"
+import WriteButton from "../../components/button/WriteButton"
+import { ABI } from "../../config/constant"
 
 const MintPage = (props) => {
   return (
@@ -16,19 +16,19 @@ const MintPage = (props) => {
         Mint
       </WriteButton>
     </div>
-  );
-};
+  )
+}
 
 export async function getStaticProps() {
   return {
     props: {
-      abi: ABI,
-    }, // will be passed to the page component as props
-  };
+      abi: ABI
+    } // will be passed to the page component as props
+  }
 }
 
 MintPage.propTypes = {
-  abi: PropTypes.arrayOf(PropTypes.object).isRequired,
-};
+  abi: PropTypes.arrayOf(PropTypes.object).isRequired
+}
 
-export default MintPage;
+export default MintPage
