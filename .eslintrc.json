@@ -7,10 +7,10 @@
     "plugin:prettier/recommended"
   ],
   "rules": {
-    "semi": [2, "never"],
-    "quotes": [2, "double", { "avoidEscape": true }],
-    "camelcase": [2, {"properties": "always"}],
-    "react/jsx-pascal-case": [2, { "allowAllCaps": true, "ignore": [] }],
-    "comma-dangle": [2, "never"]
+    "semi": [1, "never"],
+    "quotes": [1, "double", { "avoidEscape": true }],
+    "camelcase": [1, {"properties": "always"}],
+    "react/jsx-pascal-case": [1, { "allowAllCaps": true, "ignore": [] }],
+    "comma-dangle": [1, "never"]
   }
 }
